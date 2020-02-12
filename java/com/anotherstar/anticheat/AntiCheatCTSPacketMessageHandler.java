@@ -50,10 +50,10 @@ implements IMessageHandler<AntiCheatCTSPacketMessage, IMessage> {
             for (byte[] md5data : message.md5s) {
                 try {
                     String md5 = new String(md5data, "UTF-8");
-//                    if (!md5s.contains(md5)) {
-//                        ctx.getServerHandler().playerEntity.playerNetServerHandler.kickPlayerFromServer(ConfigLoader.antiCheatMessage);
-//                        break;
-//                    }
+                    if (!md5s.contains(md5)) {
+                        ctx.getServerHandler().playerEntity.playerNetServerHandler.kickPlayerFromServer(ConfigLoader.antiCheatMessage);
+                        break;
+                    }
                     clientMd5s.add(md5);
                 }catch (Exception e) {
                     ctx.getServerHandler().playerEntity.playerNetServerHandler.kickPlayerFromServer(ConfigLoader.antiCheatMessage);
@@ -61,8 +61,8 @@ implements IMessageHandler<AntiCheatCTSPacketMessage, IMessage> {
             }
             for (String md5 : necessaryMd5s) {
                 if (clientMd5s.contains(md5)) continue;
-//                ctx.getServerHandler().playerEntity.playerNetServerHandler.kickPlayerFromServer(ConfigLoader.antiCheatExtensionMessage);
-//                break;
+                ctx.getServerHandler().playerEntity.playerNetServerHandler.kickPlayerFromServer(ConfigLoader.antiCheatExtensionMessage);
+                break;
             }
         }
         return null;
